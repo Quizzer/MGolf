@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="locations">
+        <item>Kaiserslautern</item>
+        <item>Köln</item>
+        <item>Leipzig</item>
+        <item>Mainz</item>
+    </string-array>
+
+</resources>

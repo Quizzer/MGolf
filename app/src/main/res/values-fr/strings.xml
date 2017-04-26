@@ -1,0 +1,13 @@
+<resources>
+    <string name="welcome_message">Bienvenue chez MGolf.</string>
+    <string name="history">Histoire</string>
+    <string name="play">Jouer</string>
+    <string name="search">Chercher</string>
+    <string name="training">Entrainement</string>
+    <string name="name">Nom</string>
+    <string name="useTilt_PreferenceTitle">Capteur d\'inclinaison</string>
+    <string name="useTilt_SummaryOff">Envisager pas d\'inclinaison durant l\'entrainement</string>
+    <string name="useTilt_SummaryOn">Envisager d\'inclinaison durant l\'entrainement</string>
+    <string name="username_PreferenceTitle">Ton Nom</string>
+    <string name="username_Summary">Ton Nom est mis quand commencer un jeu nouveau.</string>
+</resources>

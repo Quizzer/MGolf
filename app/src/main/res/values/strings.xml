@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_title" translatable="false">MGolf</string>
+    <string name="welcome_message">Willkommen bei MGolf.</string>
+    <string name="training">Training</string>
+    <string name="history">Verlauf</string>
+    <string name="play">Spielen</string>
+    <string name="search">Suchen</string>
+    <string name="ellipsis" translatable="false">…</string>
+    <string name="add" translatable="false">+</string>
+    <string name="questionmark" translatable="false">\?</string>
+    <string name="name">Name</string>
+    <string name="useTilt_SummaryOff">Beim Training wird keine Neigung berücksichtigt.</string>
+    <string name="useTilt_SummaryOn">Beim Training wird die Neigung berücksichtigt.</string>
+    <string name="useTilt_PreferenceTitle">Neigungssensor</string>
+    <string name="username_Summary">Wird bei neuen Spielen automatisch gesetzt.</string>
+    <string name="username_PreferenceTitle">Dein Name</string>
+    <string name="settings">settings</string>
+    <string name="historyDialog">Das Spiel in %1$s mit %2$s fand %3$s statt.</string>
+</resources>

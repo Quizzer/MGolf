@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="de.neu.mgolf.PlayersActivity">
+
+    <Button
+        android:id="@+id/btnQuestionmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:minWidth="40dp"
+        android:onClick="onClick_Questionmark"
+        android:text="@string/questionmark" />
+
+    <Spinner
+        android:id="@+id/spnLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="9dp"
+        android:layout_toLeftOf="@+id/btnQuestionmark"
+        android:entries="@array/locations"/>
+
+    <Button
+        android:id="@+id/btnEllipsis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btnQuestionmark"
+        android:minWidth="40dp"
+        android:onClick="onClick_Ellipsis"
+        android:text="@string/ellipsis" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnEllipsis"
+        android:layout_alignBottom="@+id/btnEllipsis"
+        android:layout_toLeftOf="@+id/btnQuestionmark"
+        android:minWidth="40dp"
+        android:onClick="onClick_add"
+        android:text="@string/add" />
+
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/btnAdd"
+        android:layout_toLeftOf="@+id/btnAdd"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:onClick="onClick_ok"
+        android:text="@android:string/ok" />
+
+    <ListView
+        android:id="@+id/lstNames"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnOK"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btnEllipsis" />
+
+</RelativeLayout>

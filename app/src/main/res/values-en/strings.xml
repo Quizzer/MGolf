@@ -1,0 +1,14 @@
+<resources>
+    <string name="welcome_message">Welcome to MGolf.</string>
+    <string name="play">Play</string>
+    <string name="search">Search</string>
+    <string name="training">Training</string>
+    <string name="history">History</string>
+    <string name="name">Name</string>
+    <string name="useTilt_PreferenceTitle">Tilt Sensor</string>
+    <string name="useTilt_SummaryOff">Allow no tilt in training mode</string>
+    <string name="useTilt_SummaryOn">Allow tilt in training mode</string>
+    <string name="username_PreferenceTitle">Your Name</string>
+    <string name="username_Summary">This name ist set when starting a new game.</string>
+    <string name="historyDialog">The game with %2$s took place in %1$s %3$s.</string>
+</resources>
