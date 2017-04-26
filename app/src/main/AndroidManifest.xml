@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.GreenBackground">
+            android:theme="@style/AppTheme.GreenBackground"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
