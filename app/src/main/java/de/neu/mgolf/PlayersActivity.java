@@ -1,11 +1,16 @@
 package de.neu.mgolf;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -25,6 +30,8 @@ import java.util.ArrayList;
 
 import de.neu.mgolf.database.GameColumns;
 import de.neu.mgolf.database.MGolfDB;
+import de.neu.mgolf.service.UploadService;
+import de.neu.mgolf.tasks.WeatherAsyncTask;
 
 public class PlayersActivity extends AppCompatActivity implements TextWatcher {
 
@@ -63,12 +70,19 @@ public class PlayersActivity extends AppCompatActivity implements TextWatcher {
 
         // Listener für Änderungen im Namensfeld
         edtName.addTextChangedListener(this);
-
     }
 
     public void onClick_Questionmark(View view) {
         if (BuildConfig.DEBUG) {
             Log.d(Constants.TAG, "onClick: Questionmark");
+        }
+        String location = (String) spnLocation.getSelectedItem();
+
+        // Prüfen ob Netzwerkverbindung vorhanden
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) { // .isConnected = Netzwerk,
+            new WeatherAsyncTask(this).execute(location);
         }
     }
 
@@ -150,6 +164,22 @@ public class PlayersActivity extends AppCompatActivity implements TextWatcher {
             Toast.makeText(this, "Es ist ein Fehler aufgetreten.", Toast.LENGTH_SHORT).show();
         }
         database.close();
+
+        // Information ablegen, dass ein Upload zu tun ist
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // mit .edit() wird ein Editor gestartert... Änderungen dann mit commit()/apply()
+        prefs.edit().putBoolean(Constants.UPLOAD_REQUIRED, true).apply(); // .apply() = asynchron! während .commit() synchron eine paar Millisekunden frißt
+
+        // Prüfen ob Netzwerkverbindung vorhanden
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        // connectivityManager.isActiveNetworkMetered(); // .isMetered = nur WLAN?
+        // networkInfo.getType() // 3 Typen abfragen: GPS; WLAN, Service-Provider
+        if (networkInfo != null && networkInfo.isConnected()) { // .isConnected = Netzwerk,
+            // Wenn nEtzwerkverbindung vorhande: Hintergrund-Sevice starten
+            Intent intent = new Intent(this, UploadService.class).putExtra("location", location);
+            startService(intent);
+        }
     }
 
     @Override

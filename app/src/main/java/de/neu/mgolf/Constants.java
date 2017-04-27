@@ -8,4 +8,5 @@ public class Constants {
 
     public static final String TAG = "MGolf";
 
+    public static final String UPLOAD_REQUIRED = "uploadRequired";
 }
