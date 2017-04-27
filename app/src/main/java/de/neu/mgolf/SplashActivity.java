@@ -41,11 +41,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         };
         handler = new Handler();
-
-        // Blendet Benachrichtigungsleiste aus
-//        getWindow().setFlags(
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     public void onClick_SplashScreen(View view) {

@@ -11,4 +11,8 @@
     <string name="username_PreferenceTitle">Your Name</string>
     <string name="username_Summary">This name ist set when starting a new game.</string>
     <string name="historyDialog">The game with %2$s took place in %1$s %3$s.</string>
+    <string name="metric">metric</string>
+    <string name="imperial">imperial</string>
+    <string name="units_PreferenceTitle">Units</string>
+    <string name="settings">Settings</string>
 </resources>

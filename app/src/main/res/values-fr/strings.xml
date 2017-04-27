@@ -10,4 +10,9 @@
     <string name="useTilt_SummaryOn">Envisager d\'inclinaison durant l\'entrainement</string>
     <string name="username_PreferenceTitle">Ton Nom</string>
     <string name="username_Summary">Ton Nom est mis quand commencer un jeu nouveau.</string>
+    <string name="metric">métrique</string>
+    <string name="imperial">impérial</string>
+    <string name="units_PreferenceTitle">unités</string>
+    <string name="settings">Paramètres</string>
+    <string name="historyDialog">Le jeu à %1$s avec %2$s se logé %3$s.</string>
 </resources>

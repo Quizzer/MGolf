@@ -14,6 +14,9 @@
     <string name="useTilt_PreferenceTitle">Neigungssensor</string>
     <string name="username_Summary">Wird bei neuen Spielen automatisch gesetzt.</string>
     <string name="username_PreferenceTitle">Dein Name</string>
-    <string name="settings">settings</string>
+    <string name="settings">Einstellungen</string>
     <string name="historyDialog">Das Spiel in %1$s mit %2$s fand %3$s statt.</string>
+    <string name="metric">metrisch</string>
+    <string name="imperial">imperial</string>
+    <string name="units_PreferenceTitle">Einheiten</string>
 </resources>

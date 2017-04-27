@@ -6,5 +6,6 @@
         <item>Leipzig</item>
         <item>Mainz</item>
     </string-array>
+    <string-array name="metric" />
 
 </resources>

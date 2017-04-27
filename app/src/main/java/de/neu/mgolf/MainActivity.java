@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick_training(View view) {
         Log.d(Constants.TAG, "onClick_Main_training: ");
+
+        Intent intent = new Intent(this, TrainingActivity.class);
+        startActivity(intent);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
