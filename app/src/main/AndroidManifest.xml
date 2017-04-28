@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.neu.mgolf">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -25,8 +26,10 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".PlayersActivity" />
         <activity android:name=".HistoryActivity" />
+        <activity android:name=".AudioActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".TrainingActivity" />
+        <activity android:name=".TrainingActivity"
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".receiver.ConnectivityChangedReceiver">
             <intent-filter>

@@ -18,6 +18,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Locale;
 
 import de.neu.mgolf.Constants;
@@ -31,22 +32,24 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, String> {
         this.context = context;
     }
 
-    private static final String APPID = "111620814d33ea8a7a560b7c7823bf21";
     private static String url = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=%s&lang=%s&appid=%s";
 
     @Override
     protected String doInBackground(String... params) {
 
         String location = params[0];
+        HashMap<String, String> temp_units = new HashMap<>();
+        temp_units.put("imperial", "°F");
+        temp_units.put("metric","°C");
+        temp_units.put("kelvin", " K");
 
         try {
             String encodedLocation = URLEncoder.encode(location, "UTF8");
 
-            //  Todo: get units from SharedPreferences
-            // SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            // prefs.getBoolean(Constants.UNITS, false);
+            // get units from Shared Preferences
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            String units = prefs.getString("units", "metric");
 
-            String units = "metric"; // Todo: Auslesen aus SharedPreferences
             // Auslesen der Locale Default Language
             String lang = Locale.getDefault().getLanguage();
 
@@ -54,7 +57,7 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, String> {
                     "q=%s" +
                     "&units=%s" +
                     "&lang=%s" +
-                    "&appid=%s", encodedLocation, units, lang, APPID);
+                    "&appid=%s", encodedLocation, units, lang, Constants.APPID);
             Log.i(Constants.TAG, "doInBackground: url = " + requestUrl);
 
             //Lookup
@@ -71,7 +74,7 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, String> {
             String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
             double temp = jsonObject.getJSONObject("main").getDouble("temp");
 
-            String message = String.format("Das Wetter in %s: %s", location, description + ", " + Math.round(temp) + "°C");
+            String message = String.format("Das Wetter in %s: %s", location, description + ", " + Math.round(temp) + temp_units.get(units));
 
             return message;
 

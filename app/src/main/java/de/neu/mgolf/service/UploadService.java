@@ -56,7 +56,7 @@ public class UploadService extends IntentService {
 
         Log.d(Constants.TAG, "onHandleIntent: ERFOLGREICH HOCHGELADEN");
 
-        // ToDo: PendingIntent bauen und dem builder mitgeben
+        // PendingIntent bauen und dem builder mitgeben. Todo: History per API mitgeben um App-Schließen bei back-Taste zu vermeien (Kicker-Beispiel)
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, HistoryActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);
 

@@ -14,10 +14,10 @@
         android:singleLine="true"
         android:summary="@string/username_Summary"
         android:title="@string/username_PreferenceTitle" />
-    <SwitchPreference
-        android:defaultValue="false"
+    <ListPreference
+        android:defaultValue="@string/metric_key"
+        android:entries="@array/units_names"
+        android:entryValues="@array/units_keys"
         android:key="units"
-        android:summaryOff="@string/metric"
-        android:summaryOn="@string/imperial"
         android:title="@string/units_PreferenceTitle" />
 </PreferenceScreen>

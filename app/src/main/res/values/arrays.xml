@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="locations">
+    <string-array name="locations" translatable="false">
         <item>Kaiserslautern</item>
         <item>Köln</item>
         <item>Leipzig</item>
         <item>Mainz</item>
     </string-array>
-    <string-array name="metric" />
+
+    <string-array name="units_keys" translatable="false">
+        <item>@string/metric_key</item>
+        <item>@string/imperial_key</item>
+    </string-array>
+
+    <string-array name="units_names" translatable="false">
+        <item>@string/metric</item>
+        <item>@string/imperial</item>
+    </string-array>
 
 </resources>

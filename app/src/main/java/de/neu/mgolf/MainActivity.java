@@ -71,4 +71,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void onClickMP3(MenuItem item) {
+        Log.d(Constants.TAG, "onClickMP3: MenuItem");
+
+        Intent intent = new Intent(this, AudioActivity.class);
+        startActivity(intent);
+
+    }
+
 }

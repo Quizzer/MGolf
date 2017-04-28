@@ -19,4 +19,7 @@
     <string name="metric">metrisch</string>
     <string name="imperial">imperial</string>
     <string name="units_PreferenceTitle">Einheiten</string>
+    <string name="metric_key" translatable="false">metric</string>
+    <string name="imperial_key" translatable="false">imperial</string>
+    <string name="mp3">mp3</string>
 </resources>

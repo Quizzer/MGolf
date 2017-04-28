@@ -75,6 +75,7 @@ public class HistoryActivity extends AppCompatActivity implements AdapterView.On
         long timestamp = cursor.getLong(cursor.getColumnIndex(GameColumns.TIMESTAMP));
 
         // Formatieren
+        // Todo: ???
         CharSequence timeString = DateUtils.getRelativeTimeSpanString(timestamp); // ToDo: ordentliche Time-Formatierung (Anpassung Präfix "before", andere Sprachen, Wechsel von relativer zu fixer Zeitangabe)
         String message = getResources().getString(R.string.historyDialog, location, names, timeString);
 

@@ -7,4 +7,10 @@
         android:onClick="onClickSettings"
         android:title="@string/settings"
         app:showAsAction="always" />
+    <item
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:onClick="onClickMP3"
+        android:title="@string/mp3"
+        app:showAsAction="always" />
+
 </menu>
