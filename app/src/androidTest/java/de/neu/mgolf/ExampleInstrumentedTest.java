@@ -21,6 +21,7 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("de.neu.mgolf", appContext.getPackageName());
+        // only works for Build Variant freeDebug!
+        assertEquals("de.neu.mgolf.free.debug", appContext.getPackageName());
     }
 }

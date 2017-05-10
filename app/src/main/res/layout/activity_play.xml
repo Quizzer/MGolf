@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="de.neu.mgolf.PlayersActivity">
+    tools:context="de.neu.mgolf.PlayersActivity"
+    android:id="@+id/activity_play">
 
     <Button
         android:id="@+id/btnQuestionmark"
