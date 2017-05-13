@@ -3,10 +3,7 @@ package de.neu.mgolf.tasks;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,7 +11,6 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -48,7 +44,8 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, String> {
 
             // get units from Shared Preferences
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            String units = prefs.getString("units", "metric");
+
+            String units = prefs.getString(context.getResources().getString(R.string.units_key), "metric");
 
             // Auslesen der Locale Default Language
             String lang = Locale.getDefault().getLanguage();
@@ -74,8 +71,7 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, String> {
             String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
             double temp = jsonObject.getJSONObject("main").getDouble("temp");
 
-            String message = String.format("Das Wetter in %s: %s", location, description + ", " + Math.round(temp) + temp_units.get(units));
-
+            String message = context.getResources().getString(R.string.weather_text, location, description, Math.round(temp) + temp_units.get(units));
             return message;
 
         } catch (Exception e) {

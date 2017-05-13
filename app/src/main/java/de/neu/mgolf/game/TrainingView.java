@@ -1,6 +1,7 @@
 package de.neu.mgolf.game;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.media.AudioManager;
@@ -9,9 +10,14 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import de.neu.mgolf.Constants;
+import de.neu.mgolf.MainActivity;
 import de.neu.mgolf.R;
 
 public class TrainingView extends View {
@@ -37,6 +43,9 @@ public class TrainingView extends View {
     private int collisionSoundId;
     private int holeSoundId;
     private boolean inHole;
+
+    private int counter = 0;
+    private Intent intent = new Intent(getContext(), MainActivity.class);
 
     public TrainingView(Context context) {
         super(context);
@@ -93,9 +102,14 @@ public class TrainingView extends View {
         this.xBall = w/2;
         this.yBall = h * 0.8f;
 
-        this.xHole = w/2;
-        this.yHole = (int) (h * 0.2);
+        // zufällige Verschiebung des Ziellochs auf der x-Achse
+        double random = Math.random() - 0.5; // [-0.5, ..., 0.5]
+        this.xHole = (int) (w/2 + (random * w));
+        // maximale Begrenzung ab Rand abfangen
+        xHole = xHole < d*2 ? d*2 : xHole;
+        xHole = xHole > w-d*2 ? w-d*2 : xHole;
 
+        this.yHole = (int) (h * 0.2);
     }
 
     @Override
@@ -111,6 +125,14 @@ public class TrainingView extends View {
                 touched = false;
                 vx = (xBall - xTouch) * 0.04f;
                 vy = (yBall - yTouch) * 0.04f;
+                counter++;
+
+                View parent = (View)this.getParent();
+                if (parent != null) {
+                    TextView countertext = (TextView) parent.findViewById(R.id.counterText);
+                    String sCounter = String.valueOf(counter);
+                    countertext.setText(sCounter);
+                }
 
                 break;
         }
@@ -126,13 +148,23 @@ public class TrainingView extends View {
         int radius = 20;
         canvas.drawCircle(xHole, yHole, radius, black);
         if (inHole) {
-            // Todo: Count Schläge - Toast mit kurzer Display Zeit?
-            // Todo: New Game
+            Toast.makeText(getContext(), getResources().getQuantityString(R.plurals.noOfShotsMsg, counter, counter), Toast.LENGTH_SHORT).show();
+            counter = 0;
+            View parent = (View)this.getParent();
+            if (parent != null) {
+                TextView countertext = (TextView) parent.findViewById(R.id.counterText);
+                String sCounter = String.valueOf(counter);
+                countertext.setText(sCounter);
+            }
+
+            inHole = false;
+            this.onSizeChanged(w, h, w, h);
+            this.draw(canvas);
             return;
         }
 
         if (touched) {
-            canvas.drawLine(xTouch, yTouch, xBall, yBall, example_color);
+            canvas.drawLine(xTouch, yTouch, xBall, yBall, black);
         }
         canvas.drawCircle(xBall, yBall, radius, red);
 
@@ -146,13 +178,12 @@ public class TrainingView extends View {
             if (xBall < d + radius || xBall > w-d - radius) {
                 vx = -vx;
                 xBall += vx;
-                // Todo: Sound Stereo je nach x und y Koordinate
-                soundPool.play(collisionSoundId, 1, 1, 1, 0, 1);
+                this.calculateAndPlayCollisionSound();
             }
             if (yBall < d + radius || yBall > h-d - radius) {
                 vy = -vy;
                 yBall += vy;
-                soundPool.play(collisionSoundId, 1, 1, 1, 0, 1);
+                this.calculateAndPlayCollisionSound();
             }
 
             // Ist der Ball im Loch
@@ -182,5 +213,11 @@ public class TrainingView extends View {
     public void setAcceleration(float ax, float ay) {
         vx += ax * 0.08;
         vy += ay * 0.08;
+    }
+
+    private void calculateAndPlayCollisionSound() {
+        float leftVol = 1f - xBall/w;
+        float rightVol = 0f + xBall/w;
+        soundPool.play(collisionSoundId, leftVol, rightVol, 1, 0, 1);
     }
 }

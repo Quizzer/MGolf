@@ -14,5 +14,9 @@
     <string name="imperial">impérial</string>
     <string name="units_PreferenceTitle">Unités</string>
     <string name="settings">Paramètres</string>
-    <string name="historyDialog">Le jeu à %1$s avec %2$s se logé %3$s.</string>
+    <string name="historyDialog">%1$s: Joué à %2$s avec %3$s.</string>
+    <string name="username_default">Minigolfstar</string>
+    <string name="weather_text">Le temps à %1$s: %2$s, %3$s</string>
+    <string name="noOfShotsMsg_one">Putté avec %d coup!</string>
+    <string name="noOfShotsMsg_other">Putté avec %d coups!</string>
 </resources>

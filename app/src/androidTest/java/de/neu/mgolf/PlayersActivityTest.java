@@ -37,7 +37,7 @@ public class PlayersActivityTest {
                 .check(matches(not(isEnabled())));
 
         // Eingabe eines Namens
-        onView(withId(R.id.edtName)).perform(click(), replaceText("Anton"), closeSoftKeyboard());
+        onView(withId(R.id.edtName)).perform(click(), replaceText("Antonia"), closeSoftKeyboard());
 
         // Schlusssituation: Knopf enabled
         onView(withId(R.id.btnAdd)).check(matches(isEnabled()));
@@ -52,9 +52,14 @@ public class PlayersActivityTest {
         // Drücke den addButton
         onView(withId(R.id.btnAdd)).perform(click());
 
-        // Schlusssituation: Erster Eintrag der Liste enthält "Anton"
+
+        // Schlusssituation: Zweiter Eintrag der Liste enthält "Anton"
         onData(anything())
                 .inAdapterView(withId(R.id.lstNames)).atPosition(0)
+                .check(matches(withText(R.string.username_default)));
+        // Erster Eintrag sollte beim initialen Start der default Spielername sein
+        onData(anything())
+                .inAdapterView(withId(R.id.lstNames)).atPosition(1)
                 .check(matches(withText("Anton")));
 
     }

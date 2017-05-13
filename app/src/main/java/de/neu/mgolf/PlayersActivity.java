@@ -63,6 +63,9 @@ public class PlayersActivity extends AppCompatActivity implements TextWatcher {
             names = savedInstanceState.getStringArrayList(NAMES);
         } else {
             names = new ArrayList<String>();
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            String first_name = prefs.getString(getResources().getString(R.string.username), getResources().getString(R.string.username_default));
+            names.add(first_name);
         }
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names); // ...list_item_1-einzeilig, ...list_item_2-zweizeilig
@@ -146,7 +149,7 @@ public class PlayersActivity extends AppCompatActivity implements TextWatcher {
         // Daten für Datenbank sammeln
         String location = (String) spnLocation.getSelectedItem();
         String nameString = TextUtils.join(", ", names);
-        long timestamp = System.currentTimeMillis() - DateUtils.DAY_IN_MILLIS*365;
+        long timestamp = System.currentTimeMillis();
 
         Log.d(Constants.TAG, "onClick_ok: " + location + " - " + nameString + " - " + timestamp);
 

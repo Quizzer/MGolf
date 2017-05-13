@@ -17,11 +17,13 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import de.neu.mgolf.database.GameColumns;
 import de.neu.mgolf.database.MGolfDB;
 
 import static de.neu.mgolf.R.id.lstNames;
+import static de.neu.mgolf.R.id.time;
 
 public class HistoryActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -74,10 +76,33 @@ public class HistoryActivity extends AppCompatActivity implements AdapterView.On
         String location = cursor.getString(cursor.getColumnIndex(GameColumns.LOCATION));
         long timestamp = cursor.getLong(cursor.getColumnIndex(GameColumns.TIMESTAMP));
 
+        Log.d(Constants.TAG, "onItemClick: timestamp from DB" + timestamp);
+
+        // Test-Formatierung DateUtils TimeSpanString
+        long now = System.currentTimeMillis();
+        long in2weeks = now + DateUtils.WEEK_IN_MILLIS*2;
+        long tomorrow = now + DateUtils.DAY_IN_MILLIS;
+        long in17sec = now + DateUtils.SECOND_IN_MILLIS*17;
+        long before2sec = now - DateUtils.SECOND_IN_MILLIS*2;
+        long before5min = now - DateUtils.MINUTE_IN_MILLIS*5;
+        long before7hours = now - DateUtils.HOUR_IN_MILLIS*7;
+        long yesterday = now - DateUtils.DAY_IN_MILLIS;
+        long theDayBeforeYesterday = yesterday - DateUtils.DAY_IN_MILLIS;
+        long lastWeek = now - DateUtils.WEEK_IN_MILLIS;
+        long lastYear = now - DateUtils.YEAR_IN_MILLIS;
+        long lastYearPlus1 = now - (DateUtils.YEAR_IN_MILLIS + DateUtils.DAY_IN_MILLIS);
+        long[] times = {in2weeks, tomorrow, in17sec, now, before2sec, before5min, before7hours, yesterday, theDayBeforeYesterday, lastWeek, lastYear, lastYearPlus1};
+
+        //String timeString = "";
+        for (long time: times) {
+            CharSequence relativeTimeSpanString = DateUtils.getRelativeTimeSpanString(time, now, 0);
+            //timeString += relativeTimeSpanString + " - ";
+        }
+
         // Formatieren
-        // Todo: ???
-        CharSequence timeString = DateUtils.getRelativeTimeSpanString(timestamp); // ToDo: ordentliche Time-Formatierung (Anpassung Präfix "before", andere Sprachen, Wechsel von relativer zu fixer Zeitangabe)
-        String message = getResources().getString(R.string.historyDialog, location, names, timeString);
+        // ToDo: ordentliche Time-Formatierung (Anpassung Präfix "before", andere Sprachen, Wechsel von relativer zu fixer Zeitangabe)
+        CharSequence timeString = DateUtils.getRelativeTimeSpanString(timestamp, now, 0);
+        String message = getResources().getString(R.string.historyDialog, timeString, location, names);
 
         // Dialog bauen und anzeigen
         new AlertDialog.Builder(this)
