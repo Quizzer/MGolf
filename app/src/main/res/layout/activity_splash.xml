@@ -7,7 +7,7 @@
     android:contentDescription="@string/welcome_message"
     android:onClick="onClick_SplashScreen"
     android:scaleType="center"
-    android:tint="@color/colorNeutral"
+    android:tint="@color/colorPrimaryDark"
     app:srcCompat="@drawable/ic_splash_vector"
     tools:context="de.neu.mgolf.MainActivity">
 </ImageView>
