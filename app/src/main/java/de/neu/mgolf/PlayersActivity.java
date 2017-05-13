@@ -103,7 +103,7 @@ public class PlayersActivity extends AppCompatActivity implements TextWatcher {
                 Log.d(Constants.TAG, "onActivityResult:" + name);
                 names.add(name);
                 adapter.notifyDataSetChanged();
-                // ToDo: Freature Change and Delete listed players, duplicate contacts?
+                // ToDo: Feature: Change and Delete listed players, duplicate contacts?
                 cursor.close();
             }
 

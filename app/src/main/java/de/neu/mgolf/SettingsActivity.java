@@ -11,6 +11,5 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
-        // ToDO: Ruckeln beim Öffnen der
     }
 }
