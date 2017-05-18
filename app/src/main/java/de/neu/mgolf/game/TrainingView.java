@@ -2,21 +2,21 @@ package de.neu.mgolf.game;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import de.neu.mgolf.Constants;
 import de.neu.mgolf.MainActivity;
 import de.neu.mgolf.R;
 
@@ -178,12 +178,12 @@ public class TrainingView extends View {
             if (xBall < d + radius || xBall > w-d - radius) {
                 vx = -vx;
                 xBall += vx;
-                this.calculateAndPlayCollisionSound();
+                this.calculateCollisionSoundAndPlay();
             }
             if (yBall < d + radius || yBall > h-d - radius) {
                 vy = -vy;
                 yBall += vy;
-                this.calculateAndPlayCollisionSound();
+                this.calculateCollisionSoundAndPlay();
             }
 
             // Ist der Ball im Loch
@@ -191,7 +191,7 @@ public class TrainingView extends View {
             float dy = yBall - yHole;
 
             if (dx*dx + dy*dy < 100) {
-                soundPool.play(holeSoundId, 1, 1, 1, 0, 1);
+                this.tryPlayingSound(holeSoundId, 1, 1, 1, 0, 1);
                 xBall = xHole;
                 yBall = yHole;
                 vx = vy = 0;
@@ -210,14 +210,23 @@ public class TrainingView extends View {
         }
     }
 
+    // prüft ob Geräusche in den Settings aktiviert sind und spielt nur dann ab
+    private void tryPlayingSound(int soundId, float leftVol, float rightVol, int prio, int loop, int rate) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        boolean isSoundOn = prefs.getBoolean(getResources().getString(R.string.soundToggle), true);
+        if (isSoundOn) {
+            soundPool.play(soundId, leftVol, rightVol, prio, loop, rate);
+        }
+    }
+
     public void setAcceleration(float ax, float ay) {
         vx += ax * 0.08;
         vy += ay * 0.08;
     }
 
-    private void calculateAndPlayCollisionSound() {
+    private void calculateCollisionSoundAndPlay() {
         float leftVol = 1f - xBall/w;
         float rightVol = 0f + xBall/w;
-        soundPool.play(collisionSoundId, leftVol, rightVol, 1, 0, 1);
+        this.tryPlayingSound(collisionSoundId, leftVol, rightVol, 1, 0, 1);
     }
 }

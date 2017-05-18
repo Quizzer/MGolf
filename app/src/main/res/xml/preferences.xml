@@ -2,22 +2,31 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <EditTextPreference
+        android:key="@string/username"
         android:defaultValue="@string/username_default"
-        android:key="username"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:summary="@string/username_Summary"
         android:title="@string/username_PreferenceTitle" />
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="useTilt"
-        android:summaryOff="@string/useTilt_SummaryOff"
-        android:summaryOn="@string/useTilt_SummaryOn"
-        android:title="@string/useTilt_PreferenceTitle" />
     <ListPreference
         android:key="@string/units_key"
+        android:defaultValue="@string/metric_key"
         android:entries="@array/units_names"
         android:entryValues="@array/units_keys"
-        android:title="@string/units_PreferenceTitle"
-        android:defaultValue="@string/metric_key" />
+        android:title="@string/units_PreferenceTitle" />
+    <PreferenceCategory android:title="@string/training">
+        <SwitchPreference
+            android:key="@string/soundToggle"
+            android:defaultValue="true"
+            android:summaryOff="@string/soundToggle_SummaryOff"
+            android:summaryOn="@string/soundToggle_SummaryOn"
+            android:title="@string/soundToggle_PreferendeTitle" />
+        <SwitchPreference
+            android:key="@string/useTilt"
+            android:defaultValue="false"
+            android:summaryOff="@string/useTilt_SummaryOff"
+            android:summaryOn="@string/useTilt_SummaryOn"
+            android:title="@string/useTilt_PreferenceTitle" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

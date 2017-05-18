@@ -28,8 +28,6 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, String> {
         this.context = context;
     }
 
-    private static String url = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=%s&lang=%s&appid=%s";
-
     @Override
     protected String doInBackground(String... params) {
 
@@ -45,16 +43,13 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, String> {
             // get units from Shared Preferences
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-            String units = prefs.getString(context.getResources().getString(R.string.units_key), "metric");
+            String units = prefs.getString(context.getResources().getString(R.string.units_key), context.getResources().getString(R.string.metric_key));
 
             // Auslesen der Locale Default Language
             String lang = Locale.getDefault().getLanguage();
 
-            String requestUrl = String.format("http://api.openweathermap.org/data/2.5/weather?" +
-                    "q=%s" +
-                    "&units=%s" +
-                    "&lang=%s" +
-                    "&appid=%s", encodedLocation, units, lang, Constants.APPID);
+            String url = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=%s&lang=%s&appid=%s";
+            String requestUrl = String.format(url, encodedLocation, units, lang, Constants.APPID);
             Log.i(Constants.TAG, "doInBackground: url = " + requestUrl);
 
             //Lookup
@@ -71,8 +66,7 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, String> {
             String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
             double temp = jsonObject.getJSONObject("main").getDouble("temp");
 
-            String message = context.getResources().getString(R.string.weather_text, location, description, Math.round(temp) + temp_units.get(units));
-            return message;
+            return context.getResources().getString(R.string.weather_text, location, description, Math.round(temp) + temp_units.get(units));
 
         } catch (Exception e) {
             Log.e(Constants.TAG, "doInBackground: ", e);

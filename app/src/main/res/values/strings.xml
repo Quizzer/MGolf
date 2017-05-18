@@ -9,13 +9,15 @@
     <string name="add" translatable="false">+</string>
     <string name="questionmark" translatable="false">\?</string>
     <string name="name">Name</string>
+    <string name="settings">Einstellungen</string>
+    <string name="historyDialog">%1$s: In %2$s gespielt mit %3$s.</string>
+    <string name="mp3" translatable="false">mp3</string>
+    <string name="weather_text">Das Wetter in %1$s: %2$s, %3$s</string>
+
+    <string name="useTilt" translatable="false">useTilt</string>
     <string name="useTilt_SummaryOff">Beim Training wird keine Neigung berücksichtigt.</string>
     <string name="useTilt_SummaryOn">Beim Training wird die Neigung berücksichtigt.</string>
     <string name="useTilt_PreferenceTitle">Neigungssensor</string>
-    <string name="username_Summary">Wird bei neuen Spielen automatisch gesetzt.</string>
-    <string name="username_PreferenceTitle">Dein Name</string>
-    <string name="settings">Einstellungen</string>
-    <string name="historyDialog">%1$s: In %2$s gespielt mit %3$s.</string>
 
     <string name="units_key" translatable="false">units_key</string>
     <string name="units_PreferenceTitle">Einheiten</string>
@@ -24,10 +26,16 @@
     <string name="imperial">imperial</string>
     <string name="imperial_key" translatable="false">imperial</string>
 
-    <string name="mp3" translatable="false">mp3</string>
     <string name="username" translatable="false">username</string>
+    <string name="username_Summary">Wird bei neuen Spielen automatisch gesetzt.</string>
+    <string name="username_PreferenceTitle">Dein Name</string>
     <string name="username_default">Minigolfstar</string>
-    <string name="weather_text">Das Wetter in %1$s: %2$s, %3$s</string>
+
+    <string name="soundToggle" translatable="false">soundToggle</string>
+    <string name="soundToggle_PreferendeTitle">Kollisionsgeräusche</string>
+    <string name="soundToggle_SummaryOff">Spielgeräusche sind aus.</string>
+    <string name="soundToggle_SummaryOn">Spielgeräusche sind an.</string>
+
     <string name="noOfShotsMsg_one">Eingelocht mit %d Schlag!</string>
     <string name="noOfShotsMsg_other">Eingelocht mit %d Schlägen!</string>
 

@@ -2,9 +2,20 @@
 <resources>
     <string-array name="locations" translatable="false">
         <item>Kaiserslautern</item>
-        <item>Köln</item>
-        <item>Leipzig</item>
+        <item>Wiesbaden</item>
         <item>Mainz</item>
+        <item>---</item>
+        <item>Paris</item>
+        <item>Melbourne</item>
+        <item>London</item>
+        <item>New York</item>
+        <item>---</item>
+        <item>Berlin</item>
+        <item>Hamburg</item>
+        <item>München</item>
+        <item>Köln</item>
+        <item>Frankfurt</item>
+        <item>Leipzig</item>
     </string-array>
 
     <string-array name="units_keys" translatable="false">

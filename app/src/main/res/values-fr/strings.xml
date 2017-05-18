@@ -6,8 +6,8 @@
     <string name="training">Entrainement</string>
     <string name="name">Nom</string>
     <string name="useTilt_PreferenceTitle">Capteur d\'inclinaison</string>
-    <string name="useTilt_SummaryOff">Envisager pas d\'inclinaison durant l\'entrainement</string>
-    <string name="useTilt_SummaryOn">Envisager d\'inclinaison durant l\'entrainement</string>
+    <string name="useTilt_SummaryOff">Envisager pas d\'inclinaison durant l\'entrainement.</string>
+    <string name="useTilt_SummaryOn">Envisager d\'inclinaison durant l\'entrainement.</string>
     <string name="username_PreferenceTitle">Ton Nom</string>
     <string name="username_Summary">Ton Nom est mis quand commencer un jeu nouveau.</string>
     <string name="metric">métrique</string>
@@ -19,4 +19,7 @@
     <string name="weather_text">Le temps à %1$s: %2$s, %3$s</string>
     <string name="noOfShotsMsg_one">Putté avec %d coup!</string>
     <string name="noOfShotsMsg_other">Putté avec %d coups!</string>
+    <string name="soundToggle_SummaryOff">Des bruits sont activés.</string>
+    <string name="soundToggle_SummaryOn">Des bruits sont desactivés.</string>
+    <string name="soundToggle_PreferendeTitle">Bruit de collision</string>
 </resources>

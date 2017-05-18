@@ -47,7 +47,7 @@ public class TrainingActivity extends AppCompatActivity implements SensorEventLi
     protected void onResume() {
         super.onResume();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (prefs.getBoolean("useTilt", false)) {
+        if (prefs.getBoolean(getString(R.string.useTilt), false)) {
             sensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
         }
     }
